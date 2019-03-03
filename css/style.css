@@ -4,4 +4,12 @@
 
 html, body {
     height: 100%;
+    font-family: "Exo 2", "Helvetica Neue", Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: whitesmoke;
+    color: #37474F;
 }
