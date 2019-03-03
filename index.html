@@ -26,8 +26,17 @@
     </div>
 
     <!-- LOCATIONS SIDEBAR -->
-    <div class="drawer mdl-layout__drawer"></div>
-    
+    <div class="drawer mdl-layout__drawer">
+        <!-- SEARCH FILTER -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+            <label class="mdl-button mdl-js-button mdl-button--icon" for="search">
+                <i class="material-icons">search</i>
+            </label>
+            <input class="mdl-textfield__input" type="text" id="search" placeholder="Search for a Location">
+            <label class="mdl-textfield__label" for="search"></label>
+        </div>
+    </div>
+
     <!-- JAVASCRIPT ELEMENTS -->
     <!-- jQuery Library from Google CDN v3.3.1-->
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
