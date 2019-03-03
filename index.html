@@ -38,15 +38,13 @@
             </div>
 
             <!-- LIST ITEMS  -->
-            <nav class="navigation mdl-navigation">
-                <a class="mdl-navigation__link" href="">Home</a>
-                <a class="mdl-navigation__link" href="">Inbox</a>
-                <a class="mdl-navigation__link" href="">Trash</a>
+            <nav class="navigation mdl-navigation" data-bind="foreach: locationsList">
+                <a class="mdl-navigation__link" data-bind="text: name, click: $parent.setLocation">Home</a>
             </nav>
         </div>
 
         <!-- GOOGLE MAP -->
-        <main class="mdl-layout__content">
+        <main class="mdl-layout__content" id="map">
             Google Map Here!
         </main>
     </div>
