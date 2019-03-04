@@ -162,6 +162,42 @@ function ViewModel() {
     
         this.displayMarkers();
 
+    /* knockout observes the search text input */
+    this.searchInput = ko.observable("");
+
+    /* knockout filters locations list based on the search input */
+    this.locationsList = ko.computed(function () {
+        var filteredList = [];
+        // go through all locations to filter the list
+        markers.forEach(function (location) {
+            // find any matches between the location title and the search input 
+            // return true if there is any
+            var isLocationSearch = location.title.toUpperCase().includes(self.searchInput().toUpperCase());
+
+            if (isLocationSearch) {
+                // push the location into the filtered list
+                filteredList.push(location);
+                // Show the location marker on the map
+                location.setMap(map);
+            } else {
+                // Hide the location marker from the map
+                location.setMap(null);
+            }
+            // Close any InfoWindow appears on the map
+            if (largeInfoWindow) {
+                largeInfoWindow.close();
+            }
+            largeInfoWindow = new google.maps.InfoWindow();
+
+            /* Another way to clear markers*/
+            // if true: Set the location marker visible on the map
+            // if false: Hide the location marker from the map
+            //location.setVisible(markerVisibility);
+
+        });
+        return filteredList;
+    }, this);
+
 
 };
 /* ======= END VIEWMODEL ======= */
