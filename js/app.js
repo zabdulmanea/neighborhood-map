@@ -41,6 +41,48 @@ function ViewModel() {
 
     // Display the map on the page throu Data View variable
     View.initMap();
+    
+        /* This function animates the marker when the marker is clicked.
+            Then the function that populates the infowindow of 
+            this marker will be called. */
+        this.activateMarker = function () {
+    
+        };
+    
+        /* This function create the markers and display them on the map. */
+        this.displayMarkers = function () {
+    
+            // Create the Map Markers 
+            for (var i = 0; i < Model.markers.length; i++) {
+                // Get the position from the location array.
+                this.position = Model.markers[i].location;
+                this.title = Model.markers[i].title;
+                this.type = Model.markers[i].type;
+                // Create a marker per location, and put into markers array.
+                this.marker = new google.maps.Marker({
+                    position: this.position,
+                    title: this.title,
+                    type: this.type,
+                    animation: google.maps.Animation.DROP,
+                });
+                // Push the marker to our array of markers.
+                markers.push(this.marker);
+                // Create an onclick event to animate the marker and open an infowindow 
+                this.marker.addListener('click', self.activateMarker);
+            };
+    
+            // Extend the boundaries of the map for each marker and display the marker
+            bounds = new google.maps.LatLngBounds();
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+                bounds.extend(markers[i].position);
+            }
+    
+            //map.fitBounds(bounds);
+            map.setCenter(bounds.getCenter());
+        };
+    
+        this.displayMarkers();
 
 
 };
