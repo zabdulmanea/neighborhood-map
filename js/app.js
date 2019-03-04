@@ -41,6 +41,62 @@ function ViewModel() {
 
     // Display the map on the page throu Data View variable
     View.initMap();
+
+
+    /* This function populates the infowindow when the marker is clicked. We'll only allow
+        one infowindow which will open at the marker that is clicked, and populate based
+        on that markers position. */
+        this.populateInfoWindow = function (marker, infowindow) {
+            // Foursquare API Client ID
+            clientID = "SGRZN1JBO4JBWNJ0BIAKJDRJLMYXVUP2QK1E35XGELUCMQ5F";
+            // Foursquare API Client Secret
+            clientSecret = "VIERFXGO2G5A5RLHBFHG3LNWGXCDHKYT5FMYBFDWDUTCBIND";
+    
+            var content;
+    
+            // Check to make sure the infowindow is not already opened on this marker.
+            if (infowindow.marker != marker) {
+                infowindow.marker = marker;
+                // obtain the API URL using the marker title and 
+                // latitude and longtude values for the clicked marker
+                var url = 'https://api.foursquare.com/v2/venues/search?v=20180323&ll=' +
+                    marker.position.lat() + ',' + marker.position.lng() + '&client_id=' + clientID +
+                    '&client_secret=' + clientSecret + '&query=' + marker.title;
+    
+                // fetch data from Foursquare API
+                $.getJSON(url).done(function (marker) {
+                    var response = marker.response.venues[0];
+    
+                    self.name = response.name;
+                    self.city = response.location.city || 'City not found';
+                    self.state = response.location.state || 'State not found';
+                    self.country = response.location.country || 'Country not found';
+                    self.type = response.categories[0].name || 'Type not found';
+    
+                    content = '<p style="text-align: center"><b>' + self.name + '</b></p>' +
+                        '<p><b>Address: </b>' + self.city + ', ' + self.state + ', ' + self.country + '</p>' +
+                        '<p><b>Type: </b>' + self.type + '</p>';
+    
+                    // Display Foursquare content on infowindow
+                    infowindow.setContent('<div>' + content + '</div>');
+                }).fail(function () {
+                    alert(
+                        "There is an error occured during fetching data from Foursquare! Please try loading the page."
+                    );
+                });
+    
+                infowindow.open(map, marker);
+                /* This click event is for closing infowindow with X button 
+                    to clear marker property when the infowindow is closed.
+                    and recenter the map to show all markers */
+                infowindow.addListener('closeclick', function () {
+                    infowindow.marker = null;
+                    map.panTo(bounds.getCenter());
+                    map.fitBounds(bounds);
+                });
+            }
+    
+        }
     
         /* This function animates the marker when the marker is clicked.
             Then the function that populates the infowindow of 
@@ -64,6 +120,9 @@ function ViewModel() {
                 // Stop the animation of the marker
                 setTimeout(this.setAnimation(null), 1000);
             }
+    
+            // Populate the marker information
+            self.populateInfoWindow(this, largeInfoWindow);
     
     
         };
