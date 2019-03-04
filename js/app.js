@@ -31,6 +31,11 @@ var Model = {
 /* ======= END MODEL ======= */
 
 
+/* ======= MAP ERROR ALERT ======= */
+function googleMapError() {
+    alert('Error while loading Google maps. Please refresh the page and try again!');
+}
+/* ======= END MAP ERROR ALERT ======= */
 
 /* ======= MAIN ======= */
 ko.applyBindings(new ViewModel());
