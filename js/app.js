@@ -47,6 +47,25 @@ function ViewModel() {
             this marker will be called. */
         this.activateMarker = function () {
     
+            // Close any InfoWindow appears on the map
+            if (largeInfoWindow) {
+                largeInfoWindow.close();
+            }
+            largeInfoWindow = new google.maps.InfoWindow();
+    
+            // Move map viewport to the center of the selected marker.
+            map.panTo(this.position);
+    
+            // animate the clicked marker
+            if (this.getAnimation() !== null) {
+                this.setAnimation(null);
+            } else {
+                this.setAnimation(google.maps.Animation.BOUNCE);
+                // Stop the animation of the marker
+                setTimeout(this.setAnimation(null), 1000);
+            }
+    
+    
         };
     
         /* This function create the markers and display them on the map. */
