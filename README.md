@@ -1,4 +1,4 @@
-# Neighborhood Map (Al-Nuzhah/Jeddah Favorite Locations)
+# Neighborhood Map (Favorite Locations)
 ###### Udacity's Full Stack Web Developer Nanodegree
 ----
 
@@ -14,7 +14,7 @@ This project is guided by [Udacity’s Full Stack Developer Nanodegree Program](
 * **Google Maps API - v3** used to show the neighborhood map and generate the favorite locations markers.
 * **Foursquare Places API - v2** used as a third-party API that provides more information about the  favorite locations when clicking on the map markers.
 * **Knockout JS Library - v3.5** used to implement the Model-View-ViewModel pattern.
-* **Material Design Lite (MDL) - v1.3** CDN based that provides a material design domponents in CSS, JS and HTML. It aims to optimize for cross-device use, gracefully degrade in older browsers, and offer an experience that is immediately accessible.  
+* **Material Design Lite (MDL) - v1.3** CDN based that provides a material design components in CSS, JS and HTML. It aims to optimize for cross-device use, gracefully degrade in older browsers, and offer an experience that is immediately accessible.  
 
 
 ## Files Included
@@ -29,8 +29,8 @@ This project is guided by [Udacity’s Full Stack Developer Nanodegree Program](
 | **js/app.js** | the main app file that includes the implementation of MVVM patterns, the creation of Google Map and more |
 
 ## Getting Started
-1. Clone/Download this repo
-2. Open the `index.html` file
+1. Clone/Download this repo: https://github.com/zabdulmanea/neighborhood-map.git
+2. Open `index.html` file
 
 
 ## Attributions
