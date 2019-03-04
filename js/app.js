@@ -32,7 +32,19 @@ var Model = {
 
 /* Global Variables */
 var map, bounds;
+// Create a new blank array for all the listing markers.
+var markers = [];
 
+/* ======= VIEWMODEL ======= */
+function ViewModel() {
+    var self = this;
+
+    // Display the map on the page throu Data View variable
+    View.initMap();
+
+
+};
+/* ======= END VIEWMODEL ======= */
 /* ======= View ======= */
 var View = {
     /* Display an initial map */
