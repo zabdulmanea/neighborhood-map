@@ -30,6 +30,24 @@ var Model = {
 };
 /* ======= END MODEL ======= */
 
+/* Global Variables */
+var map, bounds;
+
+/* ======= View ======= */
+var View = {
+    /* Display an initial map */
+    initMap: function () {
+        // Constructor creates a new map
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 21.6241391, lng: 39.1606164 },
+            zoom: 15,
+            styles: retroStyle,
+            mapTypeControl: false
+        });
+        largeInfoWindow = new google.maps.InfoWindow();
+    }
+};
+/* ======= END View ======= */
 
 /* ======= MAP ERROR ALERT ======= */
 function googleMapError() {
