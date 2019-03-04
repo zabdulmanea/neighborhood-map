@@ -134,12 +134,10 @@ function ViewModel() {
             // Get the position from the location array.
             this.position = Model.markers[i].location;
             this.title = Model.markers[i].title;
-            this.type = Model.markers[i].type;
             // Create a marker per location, and put into markers array.
             this.marker = new google.maps.Marker({
                 position: this.position,
                 title: this.title,
-                type: this.type,
                 animation: google.maps.Animation.DROP,
             });
             // Push the marker to our array of markers.
